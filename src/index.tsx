@@ -1,9 +1,3 @@
-import { render } from 'react-dom';
-import { Counter } from './components/Counter';
-
-render(
-  <div>
-    <Counter />
-  </div>,
-  document.getElementById('root')
-);
+import ReactDOM from 'react-dom/client';
+import App from './App';
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />);

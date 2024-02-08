@@ -18,7 +18,7 @@ export function buildWebpackConfig(
       clean: true,
     },
     module: {
-      rules: buildLoaders(),
+      rules: buildLoaders(options),
     },
     resolve: buildReslovers(),
     plugins: buildPlugins(options),
