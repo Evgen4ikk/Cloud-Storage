@@ -1,6 +1,15 @@
 @import 'variables/global';
 @import 'reset';
+
+body {
+  background: var(--gray-bg);
+}
+
 .app {
-  font-size: 30px;
-  color: black;
+  .container {
+    width: calc(100% - var(--sidebar-width));
+    margin-top: var(--navbar-height);
+    margin-left: var(--sidebar-width);
+    padding: 30px;
+  }
 }

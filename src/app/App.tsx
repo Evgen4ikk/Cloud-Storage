@@ -1,14 +1,18 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Header } from 'widgets/Header';
+import { Sidebar } from 'widgets/Sidebar';
 import { AppRouter } from './providers/router';
 import './styles/index.scss';
 
 const App: FC = () => {
+  // console.log(process.env.CLIENT_ID);
   return (
     <div className='app'>
-      <Link to={'/'}>Main</Link>
-      <Link to={'/about'}>About</Link>
-      <AppRouter />
+      <Sidebar />
+      <Header />
+      <div className='container'>
+        <AppRouter />
+      </div>
     </div>
   );
 };
