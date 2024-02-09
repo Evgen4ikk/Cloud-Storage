@@ -5,6 +5,11 @@ body {
   background: var(--gray-bg);
 }
 
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+
 .app {
   .container {
     width: calc(100% - var(--sidebar-width));

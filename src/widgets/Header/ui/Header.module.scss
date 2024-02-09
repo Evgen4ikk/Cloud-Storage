@@ -8,53 +8,14 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  justify-content: space-between;
+  justify-content: end;
 
-  .create {
+  .profile {
     display: flex;
     align-items: center;
-    gap: 20px;
-
-    .file {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      margin-right: 20px;
-      .bg {
-        display: flex;
-        align-items: center;
-        background-color: var(--gray-bg);
-        border-radius: 50%;
-        padding: 8px;
-        margin-right: 10px;
-        .icon {
-          background-color: var(--violet);
-          color: var(--white);
-          padding: 4px;
-          border-radius: 50%;
-        }
-      }
-      span {
-        font-size: 16px;
-      }
-    }
-
-    .folder {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      .icon {
-        background-color: var(--violet);
-        color: var(--white);
-        padding: 5px;
-        border-radius: 50%;
-        margin-right: 12px;
-      }
-
-      span {
-        font-size: 16px;
-      }
+    span {
+      margin-right: 15px;
+      font-size: 16px;
     }
   }
 }
