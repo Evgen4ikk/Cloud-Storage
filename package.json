@@ -19,6 +19,7 @@
     "@svgr/webpack": "^8.1.0",
     "@types/dotenv-webpack": "^7.0.7",
     "@types/react-router-dom": "^5.3.3",
+    "antd": "^5.14.0",
     "axios": "^1.6.7",
     "dotenv-webpack": "^8.0.1",
     "jwt-decode": "^4.0.0",
