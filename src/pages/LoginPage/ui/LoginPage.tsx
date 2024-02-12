@@ -8,13 +8,10 @@ const LoginPage: FC = () => {
   const navigate = useNavigate();
   return (
     <div className={cls.login}>
-      <div className={cls.title}>
-        Login with Google Account
-      </div>
+      <div className={cls.title}>Login with Google Account</div>
       <GoogleOAuthProvider clientId={process.env.CLIENT_ID}>
         <GoogleLogin
           onSuccess={res => {
-            console.log(res.credential);
             const decodedToken = jwtDecode(res.credential);
             sessionStorage.setItem('AccessToken', decodedToken.jti);
             localStorage.setItem('user', JSON.stringify(decodedToken));

@@ -1,4 +1,4 @@
-export { FileItem } from './ui/FileItem/FileItem';
+export { FileList } from './ui/FileList/FileList';
 
 export { FileUploader } from './ui/FileUploader';
 

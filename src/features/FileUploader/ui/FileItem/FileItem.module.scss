@@ -47,4 +47,46 @@
     border-bottom-right-radius: 15px;
     padding: 13px;
   }
+
+  .moreInf {
+    position: absolute;
+    right: 35px;
+    top: 35px;
+    background-color: var(--gray-bg);
+    border-radius: 15px;
+    padding: 10px;
+
+    ul {
+      list-style-type: none;
+
+      > li {
+        font-size: 16px;
+        padding: 5px 2px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f0f0f0;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+  .rename {
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 120px;
+      outline: none;
+      background-color: var(--gray-bg);
+      border: 1px solid var(--black);
+      border-radius: 3px;
+      padding: 5px;
+    }
+
+    .icon {
+      cursor: pointer;
+      margin-left: 6px;
+    }
+  }
 }

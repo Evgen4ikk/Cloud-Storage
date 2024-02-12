@@ -1,7 +1,7 @@
 import { Button, Upload, message } from 'antd';
 import { FC, useEffect, useState } from 'react';
+import { UploadedFile } from '../types/file';
 import cls from './FileUploader.module.scss';
-import { UploadedFile } from '../types/file'
 
 interface FileProps {
   onCloseModal: () => void;
@@ -24,11 +24,17 @@ export const FileUploader: FC<FileProps> = ({ onCloseModal }) => {
   const handleUploadChange = (info: any) => {
     if (info.file.status === 'done') {
       message.success(`${info.file.name} file uploaded successfully`);
-      const newUploadedFile: UploadedFile = {
-        name: info.file.name,
-        size: info.file.size,
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result as string;
+        const newUploadedFile: UploadedFile = {
+          name: info.file.name,
+          size: info.file.size,
+          dataUrl: dataUrl,
+        };
+        setUploadedFiles(prevFiles => [...prevFiles, newUploadedFile]);
       };
-      setUploadedFiles(prevFiles => [...prevFiles, newUploadedFile]);
+      reader.readAsDataURL(info.file.originFileObj);
     } else if (info.file.status === 'error') {
       message.error(`${info.file.name} file upload failed.`);
     }
