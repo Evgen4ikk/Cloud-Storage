@@ -3,6 +3,9 @@ import { FC, useEffect, useState } from 'react';
 import { UploadedFile } from '../types/file';
 import cls from './FileUploader.module.scss';
 
+const MAX_FILE_SIZE_MB = 1;
+const FORBIDDEN_FILE_EXTENSIONS = ['.php', '.json', '.js', '.ts'];
+
 interface FileProps {
   onCloseModal: () => void;
 }
@@ -22,6 +25,21 @@ export const FileUploader: FC<FileProps> = ({ onCloseModal }) => {
   };
 
   const handleUploadChange = (info: any) => {
+    const file = info.file.originFileObj;
+    const fileExtension = file.name.split('.').pop()?.toLowerCase();
+
+    if (FORBIDDEN_FILE_EXTENSIONS.includes(`.${fileExtension}`)) {
+      message.error(
+        `Uploading ${file.name} is not allowed. Please upload a different file.`
+      );
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      message.error(`File size should be less than ${MAX_FILE_SIZE_MB} MB`);
+      return;
+    }
+
     if (info.file.status === 'done') {
       message.success(`${info.file.name} file uploaded successfully`);
       const reader = new FileReader();
@@ -34,7 +52,7 @@ export const FileUploader: FC<FileProps> = ({ onCloseModal }) => {
         };
         setUploadedFiles(prevFiles => [...prevFiles, newUploadedFile]);
       };
-      reader.readAsDataURL(info.file.originFileObj);
+      reader.readAsDataURL(file);
     } else if (info.file.status === 'error') {
       message.error(`${info.file.name} file upload failed.`);
     }

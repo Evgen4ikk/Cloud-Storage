@@ -1,0 +1,14 @@
+.folder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    cursor: pointer;
+    color: var(--gray-icon);
+
+    &:hover {
+      color: var(--gary);
+    }
+  }
+}

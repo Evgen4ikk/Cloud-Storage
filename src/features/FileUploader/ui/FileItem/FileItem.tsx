@@ -80,7 +80,7 @@ export const FileItem: FC<IFileItem> = ({
       ) : (
         <div className={cls.fileName}>{file.name}</div>
       )}
-      <div className={cls.fileSize}>{bytesToKB(file.size)} KB</div>
+      <div className={cls.fileSize}>{bytesToKB(file.size)}</div>
     </div>
   );
 };

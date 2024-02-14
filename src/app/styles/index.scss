@@ -11,6 +11,8 @@ a {
 }
 
 .app {
+  height: 100vh;
+  overflow-y: auto;
   .container {
     width: calc(100% - var(--sidebar-width));
     margin-top: var(--navbar-height);

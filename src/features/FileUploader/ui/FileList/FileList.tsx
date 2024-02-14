@@ -1,22 +1,15 @@
 import { UploadedFile } from 'features/FileUploader/types/file';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
+import Grid from 'shared/ui/Grid/Grid';
 import { FileItem } from '../FileItem/FileItem';
 import cls from './FileList.module.scss';
 
-interface IFileList {}
+interface IFileList {
+  files: UploadedFile[];
+  setFiles: (files: UploadedFile[]) => void;
+}
 
-export const FileList: FC<IFileList> = ({}) => {
-  const [files, setFiles] = useState<UploadedFile[]>([]);
-
-  useEffect(() => {
-    const uploadedFiles = localStorage.getItem('uploadedFiles');
-
-    if (uploadedFiles) {
-      const parsedFiles = JSON.parse(uploadedFiles);
-      setFiles(parsedFiles);
-    }
-  }, []);
-
+export const FileList: FC<IFileList> = ({ files, setFiles }) => {
   const handleDeleteFile = (filename: string) => {
     const updatedFiles = files.filter((f: UploadedFile) => f.name !== filename);
     localStorage.setItem('uploadedFiles', JSON.stringify(updatedFiles));
@@ -47,25 +40,31 @@ export const FileList: FC<IFileList> = ({}) => {
   };
 
   return (
-    <div>
+    <div className={cls.fileList}>
       <h2>Files:</h2>
-      <div className={cls.fileList}>
-        {files.map((file, index) => (
-          <FileItem
-            key={index}
-            file={file}
-            onDelete={() => {
-              handleDeleteFile(file.name);
-            }}
-            onRename={(newName: string) => {
-              handleRenameFile(file.name, newName);
-            }}
-            onDownload={() => {
-              handleDownloadFile(file.name);
-            }}
-          />
-        ))}
-      </div>
+      <Grid>
+        {files.length == 0 ? (
+          <>No files uploaded</>
+        ) : (
+          <>
+            {files.map((file, index) => (
+              <FileItem
+                key={index}
+                file={file}
+                onDelete={() => {
+                  handleDeleteFile(file.name);
+                }}
+                onRename={(newName: string) => {
+                  handleRenameFile(file.name, newName);
+                }}
+                onDownload={() => {
+                  handleDownloadFile(file.name);
+                }}
+              />
+            ))}
+          </>
+        )}
+      </Grid>
     </div>
   );
 };
