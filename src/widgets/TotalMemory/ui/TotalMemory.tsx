@@ -26,14 +26,12 @@ export const TotalMemory: FC = () => {
 
     let totalSize = 0;
 
-    // Обработка файлов из папок
     Object.values(folders).forEach(folderFiles => {
       folderFiles.forEach(file => {
         totalSize += file.size;
       });
     });
 
-    // Обработка загруженных файлов
     uploadedFiles.forEach(file => {
       totalSize += file.size;
     });

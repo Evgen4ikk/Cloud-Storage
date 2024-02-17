@@ -18,4 +18,12 @@
   @media screen and (max-width: 1240px) {
     grid-template-columns: repeat(3, 220px);
   }
+
+  @media screen and (max-width: 870px) {
+    grid-template-columns: repeat(2, 220px);
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: repeat(1, 220px);
+  }
 }

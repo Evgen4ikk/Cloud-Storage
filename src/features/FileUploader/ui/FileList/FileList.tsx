@@ -10,15 +10,15 @@ interface IFileList {
 }
 
 export const FileList: FC<IFileList> = ({ files, setFiles }) => {
-  const handleDeleteFile = (filename: string) => {
-    const updatedFiles = files.filter((f: UploadedFile) => f.name !== filename);
+  const handleDeleteFile = (fileId: number) => {
+    const updatedFiles = files.filter((f: UploadedFile) => f.id !== fileId);
     localStorage.setItem('uploadedFiles', JSON.stringify(updatedFiles));
     setFiles(updatedFiles);
   };
 
-  const handleRenameFile = (filename: string, newName: string) => {
+  const handleRenameFile = (fileId: number, newName: string) => {
     const updatedFiles = files.map((f: UploadedFile) => {
-      if (f.name === filename) {
+      if (f.id === fileId) {
         return { ...f, name: newName };
       }
       return f;
@@ -27,8 +27,8 @@ export const FileList: FC<IFileList> = ({ files, setFiles }) => {
     setFiles(updatedFiles);
   };
 
-  const handleDownloadFile = (filename: string) => {
-    const file = files.find(f => f.name === filename);
+  const handleDownloadFile = (fileId: number) => {
+    const file = files.find(f => f.id === fileId);
     if (file) {
       const downloadLink = document.createElement('a');
       downloadLink.href = file.dataUrl;
@@ -52,13 +52,13 @@ export const FileList: FC<IFileList> = ({ files, setFiles }) => {
                 key={index}
                 file={file}
                 onDelete={() => {
-                  handleDeleteFile(file.name);
+                  handleDeleteFile(file.id);
                 }}
                 onRename={(newName: string) => {
-                  handleRenameFile(file.name, newName);
+                  handleRenameFile(file.id, newName);
                 }}
                 onDownload={() => {
-                  handleDownloadFile(file.name);
+                  handleDownloadFile(file.id);
                 }}
               />
             ))}

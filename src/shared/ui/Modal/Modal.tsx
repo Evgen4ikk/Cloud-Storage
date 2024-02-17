@@ -12,7 +12,7 @@ interface ModalProps {
 export const Modal = (props: ModalProps) => {
   const { children, isOpen, onClose, width, height } = props;
   return (
-    <div className={cls.modal} style={{ width: width, height: height }}>
+    <div className={cls.modal}>
       <div className={cls.container}>{children}</div>
     </div>
   );

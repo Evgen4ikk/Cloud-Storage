@@ -12,8 +12,6 @@ interface IFolderItemProps {
 }
 
 export const FolderItem: FC<IFolderItemProps> = ({ folder }) => {
-  const { isShow, ref, setIsShow } = useOutside(false);
-
   const {
     isShow: isShowModal,
     ref: modalRef,

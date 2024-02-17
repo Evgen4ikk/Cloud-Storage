@@ -22,6 +22,10 @@ export const AddFileToFolder: FC<IAddFileToFolder> = ({ folder }) => {
   const [newFileName, setNewFileName] = useState('');
   const [selectedFile, setSelectedFile] = useState<UploadedFile | null>(null);
 
+  const generateUniqueId = () => {
+    return new Date().getTime();
+  };
+
   useEffect(() => {
     const storedFoldersString = localStorage.getItem('Folders');
     const storedFolders = storedFoldersString
@@ -36,6 +40,7 @@ export const AddFileToFolder: FC<IAddFileToFolder> = ({ folder }) => {
     reader.onload = () => {
       const dataUrl = reader.result as string;
       const newUploadedFile: UploadedFile = {
+        id: generateUniqueId(),
         name: file.name,
         size: file.size,
         dataUrl: dataUrl,
@@ -65,7 +70,7 @@ export const AddFileToFolder: FC<IAddFileToFolder> = ({ folder }) => {
       }
 
       folder.files.push(newUploadedFile);
-      message.success(`${file.name} file uploaded successfully`);
+      message.success(`${file.name.slice(0, 10)} file uploaded successfully`);
     };
     reader.readAsDataURL(file);
   };
@@ -83,7 +88,7 @@ export const AddFileToFolder: FC<IAddFileToFolder> = ({ folder }) => {
   };
 
   const handleDelete = (file: UploadedFile) => {
-    const updatedFiles = files.filter(f => f.name !== file.name);
+    const updatedFiles = files.filter(f => f.id !== file.id);
     const updatedFolders = {
       ...JSON.parse(localStorage.getItem('Folders') || '{}'),
     };
@@ -93,8 +98,8 @@ export const AddFileToFolder: FC<IAddFileToFolder> = ({ folder }) => {
     message.success(`${file.name} file deleted successfully`);
   };
 
-  const handleDownloadFile = (filename: string) => {
-    const file = folder.files.find(f => f.name === filename);
+  const handleDownloadFile = (fileId: number) => {
+    const file = folder.files.find(f => f.id === fileId);
     if (file) {
       const downloadLink = document.createElement('a');
       downloadLink.href = file.dataUrl;
@@ -107,7 +112,7 @@ export const AddFileToFolder: FC<IAddFileToFolder> = ({ folder }) => {
 
   const handleRename = () => {
     const updatedFiles = files.map(file => {
-      if (file.name === selectedFile?.name) {
+      if (file.id === selectedFile?.id) {
         return { ...file, name: newFileName };
       }
       return file;
@@ -143,16 +148,14 @@ export const AddFileToFolder: FC<IAddFileToFolder> = ({ folder }) => {
         <Upload {...props}>
           <Button onClick={() => setShowList(true)}>Select File</Button>
         </Upload>
-        <div className={cls.btn}>
-          <Button className={cls.btn} onClick={handleOkClick}>
-            Upload File
-          </Button>
-        </div>
+        <Button className={cls.btn} onClick={handleOkClick}>
+          Upload File
+        </Button>
       </div>
       <div className={cls.list}>
-        {files.map((file, index) => (
-          <div key={index} className={cls.item}>
-            {isRenamingShow ? (
+        {files.map(file => (
+          <div key={file.id} className={cls.item}>
+            {isRenamingShow && selectedFile?.id === file.id ? (
               <div ref={renamingRef} className={cls.rename}>
                 <input
                   type='text'
@@ -169,7 +172,7 @@ export const AddFileToFolder: FC<IAddFileToFolder> = ({ folder }) => {
               <>
                 <div className={cls.fileName}>{file.name}</div>
                 <div className={cls.icons}>
-                  <MdDownload onClick={() => handleDownloadFile(file.name)} />
+                  <MdDownload onClick={() => handleDownloadFile(file.id)} />
                   <MdEdit onClick={() => handleEdit(file)} />
                   <MdDelete onClick={() => handleDelete(file)} />
                 </div>

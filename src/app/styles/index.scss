@@ -18,5 +18,16 @@ a {
     margin-top: var(--navbar-height);
     margin-left: var(--sidebar-width);
     padding: 30px;
+
+    @media screen and (max-width: 970px) {
+      width: calc(100% - (var(--sidebar-width) - 100px));
+      margin-left: calc(var(--sidebar-width) - 100px);
+    }
+
+    @media screen and (max-width: 630px) {
+      width: 100%;
+      margin-top: var(--navbar-height);
+      margin-left: 0;
+    }
   }
 }

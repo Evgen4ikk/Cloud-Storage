@@ -6,6 +6,11 @@
     top: 0;
     right: 0;
   }
+  @media screen and (max-width: 580px) {
+    .btn {
+      top: -35px;
+    }
+  }
 
   .upload {
     margin: 10px 0;

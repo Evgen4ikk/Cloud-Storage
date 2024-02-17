@@ -1,9 +1,32 @@
+import { Box, Button, Typography } from '@mui/material';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import classes from './ErrorPage.module.scss';
 
 export const ErrorPage: FC = () => {
   return (
     <div>
+      <div className={classes.error}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            minHeight: '60vh',
+          }}
+        >
+          <Typography variant='h2' style={{ color: 'black' }}>
+            404
+          </Typography>
+          <Typography variant='h6' style={{ color: 'black' }}>
+            The page you’re looking for doesn’t exist.
+          </Typography>
+          <Link to='/'>
+            <Button variant='contained'>Back Home</Button>
+          </Link>
+        </Box>
+      </div>
       <div className={classes.text}>
         <p>404</p>
       </div>

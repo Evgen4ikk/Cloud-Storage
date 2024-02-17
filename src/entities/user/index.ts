@@ -1,3 +1,3 @@
-export { getUserAuthData } from './model/services/getUserAuthData'
+export { getUserAuthData } from './model/services/getUserAuthData';
 
-export { IUser } from './model/types/user'
+export { IUser } from './model/types/user';

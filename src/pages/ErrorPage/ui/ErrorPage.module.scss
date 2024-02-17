@@ -1,11 +1,3 @@
-body {
-  background-color: #0f0f0f;
-  /*font-family: 'Concert One', cursive;*/
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-}
-
 /*/////////////////// rules */
 $color-black: #13242c;
 $color-white: #fff;
@@ -17,6 +9,9 @@ $color-skin-3: #b2524d;
 $color-hair: #13242c;
 $color-wood-1: #601513;
 $color-wood-2: #410a09;
+.error {
+  display: none;
+}
 
 @mixin position {
   position: absolute;
@@ -431,4 +426,17 @@ $color-wood-2: #410a09;
 }
 #link:hover {
   opacity: 1;
+}
+@media screen and (max-width: 1120px) {
+  .text {
+    display: none;
+  }
+
+  .container {
+    display: none;
+  }
+
+  .error {
+    display: block;
+  }
 }

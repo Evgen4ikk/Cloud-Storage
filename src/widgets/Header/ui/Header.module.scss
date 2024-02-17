@@ -25,6 +25,10 @@
       border-radius: 15px;
       font-size: 16px;
 
+      > span {
+        margin-right: 5px;
+      }
+
       span:not(:first-child) {
         font-weight: 600;
         color: var(--violet);
@@ -41,6 +45,139 @@
       span {
         margin-right: 15px;
         font-size: 16px;
+      }
+    }
+
+    .burgerMenu {
+      display: none;
+    }
+
+    .logo {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 970px) {
+    width: calc(100% - (var(--sidebar-width) - 100px));
+  }
+
+  @media screen and (max-width: 630px) {
+    width: 100%;
+    .info {
+      .totalMemory {
+        display: none;
+      }
+
+      .profile {
+        display: none;
+      }
+
+      .burgerMenu {
+        display: block;
+        color: var(--black);
+
+        .menu {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          margin-top: 20px;
+          height: 100vh;
+          background-color: var(--black);
+
+          .container {
+            height: 100%;
+            padding: 20px 40px;
+
+            .profile {
+              margin: 20px;
+              display: flex;
+              align-items: center;
+              span {
+                margin-left: 10px;
+                font-size: 18px;
+                color: var(--white);
+              }
+            }
+
+            .totalMemory {
+              font-size: 18px;
+              margin: 10px;
+              display: flex;
+              background-color: inherit;
+              color: var(--white);
+              border: none;
+              > span {
+                margin-right: 5px;
+              }
+
+              > div {
+                display: flex;
+                align-items: center;
+              }
+              @media screen and (max-width: 330px) {
+                display: block;
+                > div {
+                  margin-top: 5px;
+                }
+              }
+            }
+
+            .icon {
+              margin: 10px 10px;
+              color: var(--gray-icon);
+              margin-right: 20px;
+            }
+
+            .list {
+              margin-top: 100px;
+
+              .item {
+                margin: 10px 0;
+                cursor: pointer;
+                padding: 10px 10px;
+                display: flex;
+                align-items: center;
+                color: var(--white);
+
+                &:hover {
+                  background: var(--violet);
+                  border-radius: 20px;
+                  .icon {
+                    color: var(--white);
+                    transition: all 0.3s linear;
+                  }
+                  transition: all 0.3s linear;
+                }
+              }
+            }
+            .logout {
+              position: absolute;
+              bottom: 100px;
+              text-align: center;
+              width: 80%;
+              display: flex;
+              align-items: center;
+              cursor: pointer;
+              padding: 10px 10px;
+              color: var(--white);
+              &:hover {
+                background: var(--violet);
+                border-radius: 20px;
+                .icon {
+                  color: var(--white);
+                  transition: all 0.3s linear;
+                }
+                transition: all 0.3s linear;
+              }
+            }
+          }
+        }
+      }
+    }
+    .logo {
+      text-align: center;
+      a {
+        color: var(--black);
       }
     }
   }

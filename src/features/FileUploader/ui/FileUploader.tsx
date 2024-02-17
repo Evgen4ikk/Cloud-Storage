@@ -24,6 +24,10 @@ export const FileUploader: FC<FileProps> = ({ onCloseModal }) => {
     onCloseModal();
   };
 
+  const generateUniqueId = () => {
+    return new Date().getTime();
+  };
+
   const handleUploadChange = (info: any) => {
     const file = info.file.originFileObj;
     const fileExtension = file.name.split('.').pop()?.toLowerCase();
@@ -46,6 +50,7 @@ export const FileUploader: FC<FileProps> = ({ onCloseModal }) => {
       reader.onload = () => {
         const dataUrl = reader.result as string;
         const newUploadedFile: UploadedFile = {
+          id: generateUniqueId(),
           name: info.file.name,
           size: info.file.size,
           dataUrl: dataUrl,

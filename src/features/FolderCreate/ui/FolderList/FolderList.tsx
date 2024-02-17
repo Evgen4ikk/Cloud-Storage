@@ -1,5 +1,4 @@
 import { IFolder } from 'features/FolderCreate/types/folder';
-import { FC } from 'react';
 import Grid from 'shared/ui/Grid/Grid';
 import { FolderItem } from '../FolderItem/FolderItem';
 import cls from './FolderList.module.scss';
@@ -8,7 +7,9 @@ interface IFolderList {
   folders: IFolder[];
 }
 
-export const FolderList: FC<IFolderList> = ({ folders }) => {
+export const FolderList = (props: IFolderList) => {
+  const { folders } = props;
+
   return (
     <div className={cls.folderList}>
       <h2>Folders:</h2>

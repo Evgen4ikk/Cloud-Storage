@@ -66,4 +66,11 @@
       }
     }
   }
+  @media screen and (max-width: 970px) {
+    width: calc(var(--sidebar-width) - 100px);
+  }
+
+  @media screen and (max-width: 630px) {
+    display: none;
+  }
 }
